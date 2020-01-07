@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.distancelin.simpleimageloader.SimpleImageLoader;
 
@@ -119,12 +120,12 @@ public class MainActivity extends AppCompatActivity {
         Button mButton = (Button) findViewById(R.id.download);
         Button stop = (Button) findViewById(R.id.stop);
 
-        final GridView gridView = (GridView) findViewById(R.id.grid);
+        final ImageView gridView = (ImageView) findViewById(R.id.grid);
         final Adapter adapter = new Adapter(this, Arrays.asList(mUrls));
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gridView.setAdapter(adapter);
+                SimpleImageLoader.getSingleton(getApplicationContext()).loadBitmapAsync(gridView,mUrls[0]);
             }
         });
 
