@@ -19,7 +19,6 @@ public class ImageResizer {
     public  Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        //第一次decode用于获取原始图片的宽高
         BitmapFactory.decodeResource(res, resId, options);
         options.inSampleSize = caculateInSampleSize(options, reqWidth, reqHeight);
         options.inJustDecodeBounds = false;
