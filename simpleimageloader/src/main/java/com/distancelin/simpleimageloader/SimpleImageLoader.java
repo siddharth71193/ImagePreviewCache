@@ -174,20 +174,24 @@ public class SimpleImageLoader {
 
 
     private void showBitmapInTargetOnUiThread(final ImageView target, final Bitmap bitmap) {
-        targetRunnable = new Runnable() {
-            @Override
-            public void run() {
-                target.setImageBitmap(bitmap);
-            }
-        };
-        target.post(targetRunnable);
+        if(load == true) {
+            targetRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    target.setImageBitmap(bitmap);
+                }
+            };
+            target.post(targetRunnable);
+        }else {
+            load = true;
+        }
     }
 
     ImageView targetImageView;
     Runnable targetRunnable;
-
+    boolean load = true;
     public void stopLoading(){
-        targetImageView.removeCallbacks(targetRunnable);
+        load = false;
     }
 
 
