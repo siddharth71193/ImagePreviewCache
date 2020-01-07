@@ -6,10 +6,6 @@ import android.graphics.BitmapFactory;
 
 import java.io.FileDescriptor;
 
-/**
- * Created by distancelin on 2017/5/11.
- */
-
 public class ImageResizer {
     private ImageResizer(){
 

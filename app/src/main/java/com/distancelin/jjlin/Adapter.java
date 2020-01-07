@@ -10,10 +10,6 @@ import com.distancelin.simpleimageloader.SimpleImageLoader;
 
 import java.util.List;
 
-/**
- * Created by distancelin on 2017/5/12.
- */
-
 public class Adapter extends BaseAdapter {
     private List<String> mUrls;
     private Context mContext;

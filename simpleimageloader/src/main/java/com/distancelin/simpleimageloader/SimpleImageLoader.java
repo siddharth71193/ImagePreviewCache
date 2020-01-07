@@ -31,17 +31,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
-/**
- * 图片加载过程概述：
- * 首先调用getBitmapFromMemoryCache(url)从内存缓存中加载，失败则getBitmapFromDiskCache加载磁盘缓存，
- * 再次失败就getBitmapFromHttp，成功之后将流写入缓存文件，再decodeFileDescriptor加载到内存，
- * 之所以不先加载到内存再写入缓存文件是因为直接两次decodeStream()进行图片也所会导致图片本身出现问题，该知识点参考自《android开发艺术探索》
- *
- *
- * Created by distancelin on 2017/5/12.
- */
-
 public class SimpleImageLoader {
     private static final String TAG = "SimpleImageLoader";
     private LruCache<String, Bitmap> mMemoryCache;
@@ -73,15 +62,10 @@ public class SimpleImageLoader {
         initImageResizer();
     }
 
-    /**
-     * @param context 用于创建缓存
-     * @return 单例的ImageLoader对象
-     */
     public static SimpleImageLoader getSingleton(Context context) {
         if (mInstance == null) {
             synchronized (SimpleImageLoader.class) {
                 if (mInstance == null) {
-                    //传入appContext避免activity带来的内存泄露
                     mInstance = new SimpleImageLoader(context.getApplicationContext());
                 }
             }
@@ -94,19 +78,16 @@ public class SimpleImageLoader {
     }
 
     private void initCache() {
-        //单位是KB
         int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
         int memoryCacheSize = maxMemory / 8;
         mMemoryCache = new LruCache<String, Bitmap>(memoryCacheSize) {
             @Override
-            //sizeOf的返回值单位必须和memoryCacheSize一致，这里为KB
             protected int sizeOf(String key, Bitmap value) {
                 return value.getRowBytes() * value.getHeight() / 1024;
             }
         };
         File diskCacheDir = getDiskCacheDir(mContext, "bitmaps");
         if (!diskCacheDir.exists()) {
-            //mkdirs可以在不存在的目录中创建文件夹
             diskCacheDir.mkdirs();
         }
         if (getUsableDiskCacheSpace(diskCacheDir) > DISK_CACHE_SIZE) {
@@ -119,19 +100,15 @@ public class SimpleImageLoader {
         }
     }
 
-    //返回可用的磁盘空间
     private long getUsableDiskCacheSpace(File diskCacheDir) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-            //获取分区所剩下的磁盘空间
             return diskCacheDir.getUsableSpace();
         }
         StatFs stats = new StatFs(diskCacheDir.getPath());
-        //block代表磁头读取磁盘文件的最小单元，又叫簇，多个扇区组成了一个簇，簇一般为2的n次方个扇区
         return stats.getBlockSizeLong() * stats.getAvailableBlocksLong();
     }
 
     private File getDiskCacheDir(Context context, String bitmaps) {
-        //外存是否可用
         boolean externalStorageAvailable = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
         final String cachePath;
         if (externalStorageAvailable) {
@@ -175,12 +152,7 @@ public class SimpleImageLoader {
     }
 
 
-    /**
-     * 采用异步的方式加载，并在UI线程中显示图片
-     *
-     * @param target 目标imageView
-     * @param url    图片的url
-     */
+
     public void loadBitmapAsync(ImageView target, String url) {
         loadBitmapAsync(target, url, target.getWidth(), target.getHeight());
     }
@@ -199,10 +171,7 @@ public class SimpleImageLoader {
         THREAD_POOL_EXECUTOR.execute(task);
     }
 
-    /**
-     * @param target 目标imageView
-     * @param bitmap 需要显示的图片
-     */
+
     private void showBitmapInTargetOnUiThread(final ImageView target, final Bitmap bitmap) {
         target.post(new Runnable() {
             @Override
@@ -256,17 +225,9 @@ public class SimpleImageLoader {
             }
         }
         mDiskLruCache.flush();
-        //由于此处如果直接decodeStream会导致图片出现错误，所以先写入文件，在decodeFileDescriptor()
         return getBitmapFromDiskCache(url, reqWidth, reqHeight);
     }
 
-    /**
-     * 根据图片的url获取到对应的inputStream,再将该inputStream写入输出流
-     *
-     * @param urlString 图片的url
-     * @param os        图片的输出流
-     * @return true 代表从网络获取图片输出流成功，false代表失败
-     */
     private boolean downloadFromUrlToStream(String urlString, OutputStream os) {
         HttpURLConnection urlConnection = null;
         BufferedOutputStream bos = null;
@@ -323,10 +284,7 @@ public class SimpleImageLoader {
         return bitmap;
     }
 
-    /**
-     * @param url 图片的url
-     * @return url对应的加密摘要md5
-     */
+
     private String hashKeyFromUrl(String url) {
         String cacheKey;
         try {
@@ -340,14 +298,10 @@ public class SimpleImageLoader {
         return cacheKey;
     }
 
-    /**
-     * @param digest 需要加密的byte数组
-     * @return 加密后的字符串
-     */
+
     private String bytesToHexString(byte[] digest) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < digest.length; i++) {
-            //base16加密
             String hex = Integer.toHexString(0xFF & digest[i]);
             if (hex.length() == 1) {
                 sb.append('0');

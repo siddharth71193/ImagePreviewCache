@@ -4,10 +4,6 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
-/**
- * Created by distancelin on 2017/5/12.
- */
-
 public class SquareImageView extends android.support.v7.widget.AppCompatImageView {
     public SquareImageView(Context context) {
         super(context);
