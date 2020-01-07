@@ -154,6 +154,7 @@ public class SimpleImageLoader {
 
 
     public void loadBitmapAsync(ImageView target, String url) {
+        targetImageView = target;
         loadBitmapAsync(target, url, target.getWidth(), target.getHeight());
     }
 
@@ -173,12 +174,20 @@ public class SimpleImageLoader {
 
 
     private void showBitmapInTargetOnUiThread(final ImageView target, final Bitmap bitmap) {
-        target.post(new Runnable() {
+        targetRunnable = new Runnable() {
             @Override
             public void run() {
                 target.setImageBitmap(bitmap);
             }
-        });
+        };
+        target.post(targetRunnable);
+    }
+
+    ImageView targetImageView;
+    Runnable targetRunnable;
+
+    public void stopLoading(){
+        targetImageView.removeCallbacks(targetRunnable);
     }
 
 

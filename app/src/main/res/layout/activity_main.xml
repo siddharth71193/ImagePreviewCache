@@ -4,6 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.distancelin.jjlin.MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonView">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -11,10 +15,18 @@
         android:text="Load"
     />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stop"
+        android:layout_alignParentRight="true"
+        android:text="Stop"
+        />
+    </RelativeLayout>
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/download"
+        android:layout_below="@id/buttonView"
         android:id="@+id/grid"
         android:horizontalSpacing="5dp"
         android:verticalSpacing="5dp"
