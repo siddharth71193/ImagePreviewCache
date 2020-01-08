@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-<com.distancelin.jjlin.utils.SquareImageView
+<com.work.greedyGames.utils.SquareImageView
     android:layout_width="100dp"
     android:layout_height="100dp"
     android:scaleType="centerCrop"

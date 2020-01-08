@@ -1,4 +1,4 @@
-package com.distancelin.jjlin;
+package com.work.simpleimageloader;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.distancelin.jjlin", appContext.getPackageName());
+        assertEquals("com.distancelin.simpleimageloader.test", appContext.getPackageName());
     }
 }

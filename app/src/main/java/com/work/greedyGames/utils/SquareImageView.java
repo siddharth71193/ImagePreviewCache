@@ -1,4 +1,4 @@
-package com.distancelin.jjlin.utils;
+package com.work.greedyGames.utils;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

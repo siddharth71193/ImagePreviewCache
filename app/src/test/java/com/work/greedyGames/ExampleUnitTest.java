@@ -1,4 +1,4 @@
-package com.distancelin.simpleimageloader;
+package com.work.greedyGames;
 
 import org.junit.Test;
 

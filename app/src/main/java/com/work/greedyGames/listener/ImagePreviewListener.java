@@ -1,4 +1,4 @@
-package com.distancelin.jjlin.listener;
+package com.work.greedyGames.listener;
 
 public interface ImagePreviewListener {
     void loadPreview(int id);

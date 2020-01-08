@@ -1,4 +1,4 @@
-package com.distancelin.jjlin;
+package com.work.simpleimageloader;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.distancelin.jjlin.ui;
+package com.work.greedyGames.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 
-import com.distancelin.jjlin.R;
-import com.distancelin.jjlin.adapter.Adapter;
-import com.distancelin.jjlin.listener.ImagePreviewListener;
-import com.distancelin.simpleimageloader.SimpleImageLoader;
+import com.work.greedyGames.R;
+import com.work.greedyGames.adapter.Adapter;
+import com.work.greedyGames.listener.ImagePreviewListener;
+import com.work.simpleimageloader.SimpleImageLoader;
 
 import java.util.ArrayList;
 import java.util.Arrays;

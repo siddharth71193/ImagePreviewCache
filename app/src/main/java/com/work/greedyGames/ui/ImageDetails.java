@@ -1,4 +1,4 @@
-package com.distancelin.jjlin.ui;
+package com.work.greedyGames.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,8 +6,8 @@ import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.widget.Button;
 
-import com.distancelin.jjlin.R;
-import com.distancelin.simpleimageloader.SimpleImageLoader;
+import com.work.greedyGames.R;
+import com.work.simpleimageloader.SimpleImageLoader;
 
 import java.util.ArrayList;
 
