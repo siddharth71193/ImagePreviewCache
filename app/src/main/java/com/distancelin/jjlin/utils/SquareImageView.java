@@ -1,4 +1,4 @@
-package com.distancelin.jjlin;
+package com.distancelin.jjlin.utils;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

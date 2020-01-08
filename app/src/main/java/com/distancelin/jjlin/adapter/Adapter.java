@@ -1,4 +1,4 @@
-package com.distancelin.jjlin;
+package com.distancelin.jjlin.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.distancelin.jjlin.listener.ImagePreviewListener;
+import com.distancelin.jjlin.R;
+import com.distancelin.jjlin.utils.SquareImageView;
 import com.distancelin.simpleimageloader.SimpleImageLoader;
 
 import java.util.List;

@@ -1,9 +1,10 @@
-package com.distancelin.jjlin;
+package com.distancelin.jjlin.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
 
+import com.distancelin.jjlin.R;
 import com.distancelin.simpleimageloader.SimpleImageLoader;
 
 import java.util.ArrayList;
