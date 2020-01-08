@@ -13,9 +13,11 @@ import java.util.List;
 public class Adapter extends BaseAdapter {
     private List<String> mUrls;
     private Context mContext;
-    public Adapter(Context context,List<String> Urls) {
+    public ImagePreviewListener imagePreviewListener;
+    public Adapter(Context context, List<String> Urls, ImagePreviewListener listener) {
         this.mUrls = Urls;
         this.mContext=context;
+        this.imagePreviewListener = listener;
     }
 
     @Override
@@ -38,7 +40,7 @@ public class Adapter extends BaseAdapter {
         ViewHolder holder;
         if(convertView==null){
             convertView= LayoutInflater.from(mContext).inflate(R.layout.itemview,parent,false);
-            holder=new ViewHolder(convertView);
+            holder=new ViewHolder(convertView,imagePreviewListener,position);
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
@@ -48,8 +50,25 @@ public class Adapter extends BaseAdapter {
     }
     private static class ViewHolder{
         private SquareImageView squareImageView;
-        private ViewHolder(View view){
+        public View view;
+        private ImagePreviewListener listener;
+        private int position;
+        private ViewHolder(View view, ImagePreviewListener listener, final int position){
+            this.view = view;
             squareImageView= (SquareImageView) view.findViewById(R.id.itemView);
+            this.listener = listener;
+            this.position = position;
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    loadImagePreview(position);
+                }
+            });
+        }
+
+        private void loadImagePreview(int id){
+            listener.loadPreview(id);
         }
     }
 }

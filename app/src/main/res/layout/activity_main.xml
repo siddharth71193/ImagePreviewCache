@@ -23,7 +23,7 @@
         android:text="Stop"
         />
     </RelativeLayout>
-    <android.support.v7.widget.AppCompatImageView
+    <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/buttonView"
