@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements ImagePreviewListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button mButton = (Button) findViewById(R.id.download);
-        Button stop = (Button) findViewById(R.id.stop);
+//        Button stop = (Button) findViewById(R.id.stop);
 
         final GridView gridView = (GridView) findViewById(R.id.grid);
         final Adapter adapter = new Adapter(this, Arrays.asList(mUrls),this);
@@ -54,12 +54,12 @@ public class MainActivity extends AppCompatActivity implements ImagePreviewListe
             }
         });
 
-        stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SimpleImageLoader.getSingleton(getApplicationContext()).stopLoading();
-            }
-        });
+//        stop.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                SimpleImageLoader.getSingleton(getApplicationContext()).stopLoading();
+//            }
+//        });
     }
 
     @Override
