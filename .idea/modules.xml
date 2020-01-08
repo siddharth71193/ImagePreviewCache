@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Desktop-simpleimageloader.iml" filepath="$PROJECT_DIR$/Desktop-simpleimageloader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ImagePreviewCache.iml" filepath="$PROJECT_DIR$/ImagePreviewCache.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/simpleimageloader/simpleimageloader-simpleimageloader.iml" filepath="$PROJECT_DIR$/simpleimageloader/simpleimageloader-simpleimageloader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simpleimageloader/simpleimageloader.iml" filepath="$PROJECT_DIR$/simpleimageloader/simpleimageloader.iml" />
     </modules>
   </component>
 </project>

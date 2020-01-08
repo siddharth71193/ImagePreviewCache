@@ -155,6 +155,7 @@ public class SimpleImageLoader {
 
     public void loadBitmapAsync(ImageView target, String url) {
         targetImageView = target;
+        isImageLoaded = false;
         loadBitmapAsync(target, url, target.getWidth(), target.getHeight());
     }
 
@@ -172,7 +173,7 @@ public class SimpleImageLoader {
         THREAD_POOL_EXECUTOR.execute(task);
     }
 
-
+    boolean isImageLoaded = false;
     private void showBitmapInTargetOnUiThread(final ImageView target, final Bitmap bitmap) {
         if(load == true) {
             targetRunnable = new Runnable() {
@@ -182,6 +183,7 @@ public class SimpleImageLoader {
                 }
             };
             target.post(targetRunnable);
+            isImageLoaded = true;
         }else {
             load = true;
         }
@@ -191,7 +193,8 @@ public class SimpleImageLoader {
     Runnable targetRunnable;
     boolean load = true;
     public void stopLoading(){
-        load = false;
+        if(!isImageLoaded)
+            load = false;
     }
 
 
